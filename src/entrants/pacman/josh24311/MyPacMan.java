@@ -54,7 +54,8 @@ public class MyPacMan extends PacmanController
         int D10 = 10;
         int D11 = 17;
         int D12 = 28;
-        int D13 = 25;
+        int D13 = 100;
+        int mapNow = 0;
         boolean ambush_stat = false ;
 
         /* D13 經過Randomd13.java產生的隨機Int */
@@ -74,7 +75,20 @@ public class MyPacMan extends PacmanController
 
         //顯示某點的所有可走鄰居
         //game.showNeighbour(1167);
-
+        //判斷現在為哪一個map
+        if(game.getCurrentMaze().name.equalsIgnoreCase("a")){
+        	mapNow = 0;
+        }
+        else if(game.getCurrentMaze().name.equalsIgnoreCase("b")){
+        	mapNow = 1;
+        }
+        else if(game.getCurrentMaze().name.equalsIgnoreCase("c")){
+        	mapNow = 2;
+        }
+        else{
+        	mapNow = 3;
+        }
+        
         //不可食鬼找最近
         for (Constants.GHOST ghost : Constants.GHOST.values())
         {
@@ -197,13 +211,42 @@ public class MyPacMan extends PacmanController
             {
                 if(minDistanceGh>=D2 && minDistanceGh <=D3 && disTonearestPp >=D6 && disTonearestPp <=D7)
                 {
+                	if(mapNow ==0)
+                	{
+                		//System.out.print("a");
+                		if(current==1149||current==1095||current==1125||current==1155||current==1142||current==1136||current==1154||current==1160||current==91||current==85||current==103||current==109||current==96||current==90||current==108||current==114)
+                        {
+                            ambush_stat = true;
+                            System.out.println("Ambush NOW");
+                        }
+                	}
+                	else if(mapNow ==1)
+                	{
+                		if(current==132||current==133||current==221||current==227||current==219||current==218||current==226||current==232||current==1084||current==1085||current==1151||current==1157||current==1149||current==1148||current==1156||current==1162)
+                        {
+                            ambush_stat = true;
+                            System.out.println("Ambush NOW");
+                        }
+                	}
+                	else if(mapNow ==2)
+                	{
+                		if(current==115||current==109||current==127||current==133||current==114||current==120||current==132||current==138||current==1022||current==1023||current==1100||current==1106||current==1098||current==1097||current==1105||current==1111)
+                        {
+                            ambush_stat = true;
+                            System.out.println("Ambush NOW");
+                        }
+                	}
+                	else if(mapNow ==3)
+                	{
+                		if(current==137||current==131||current==149||current==155||current==142||current==136||current==154||current==160||current==1164||current==1158||current==1176||current==1182||current==1169||current==1163||current==1181||current==1187)
+                        {
+                            ambush_stat = true;
+                            System.out.println("Ambush NOW");
+                        }
+                	}
                     //預備埋伏區間，察覺有危險
                 	//System.out.println("Coming Ghost: " + minGhost);
-                    if(current==1089||current==1095||current==1125||current==1094||current==1124||current==1130)
-                    {
-                        ambush_stat = true;
-                        System.out.println("Ambush NOW");
-                    }
+                    
                     if(ambush_stat) //在ambush狀態下
                     {
                         if(minDistanceGh<=D1)
@@ -226,33 +269,155 @@ public class MyPacMan extends PacmanController
                         else
                         {
                         	//撞牆實作
-                            switch(current)
-                            {
-                            case 1089:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.DOWN;
-                            case 1095:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.UP;
-                            case 1125:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.UP;
-                            case 1094:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.DOWN;
-                            case 1124:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.UP;
-                            case 1130:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.UP;
-                            case 121:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.LEFT;
-                            case 126:
-                                //System.out.println("Ambush~~~");
-                                return MOVE.RIGHT;
-                            }
+                        	if(mapNow ==0) //MAZE_A
+                        	{
+                        		switch(current){
+                        		case 85:
+                        			return MOVE.UP;
+                        		case 91:
+                        			return MOVE.UP;
+                        		case 103:
+                        			return MOVE.DOWN;
+                        		case 109:
+                        			return MOVE.DOWN;
+                        		case 96:
+                        			return MOVE.UP;
+                        		case 90:
+                        			return MOVE.UP;
+                        		case 108:
+                        			return MOVE.DOWN;
+                        		case 114:
+                        			return MOVE.DOWN;
+                        		case 1095:
+                        			return MOVE.UP;
+                        		case 1125:
+                        			return MOVE.UP;
+                        		case 1149:
+                        			return MOVE.DOWN;
+                        		case 1155:
+                        			return MOVE.DOWN;
+                        		case 1142:
+                        			return MOVE.UP;
+                        		case 1136:
+                        			return MOVE.UP;
+                        		case 1154:
+                        			return MOVE.DOWN;
+                        		case 1160:
+                        			return MOVE.DOWN;
+                        		}
+                        	}
+                        	else if(mapNow ==1)
+                        	{
+                        		switch(current){
+                        		case 132:
+                        			return MOVE.RIGHT;
+                        		case 133:
+                        			return MOVE.RIGHT;
+                        		case 221:
+                        			return MOVE.DOWN;
+                        		case 227:
+                        			return MOVE.DOWN;
+                        		case 218:
+                        			return MOVE.LEFT;
+                        		case 219:
+                        			return MOVE.LEFT;
+                        		case 226:
+                        			return MOVE.DOWN;
+                        		case 232:
+                        			return MOVE.DOWN;
+                        		case 1084:
+                        			return MOVE.RIGHT;
+                        		case 1085:
+                        			return MOVE.RIGHT;
+                        		case 1151:
+                        			return MOVE.DOWN;
+                        		case 1157:
+                        			return MOVE.DOWN;
+                        		case 1148:
+                        			return MOVE.LEFT;
+                        		case 1149:
+                        			return MOVE.LEFT;
+                        		case 1156:
+                        			return MOVE.DOWN;
+                        		case 1162:
+                        			return MOVE.DOWN;
+                        		}
+                        	}
+                        	else if(mapNow ==2)
+                        	{
+                        		switch(current){
+                        		case 109:
+                        			return MOVE.UP;
+                        		case 115:
+                        			return MOVE.UP;
+                        		case 127:
+                        			return MOVE.DOWN;
+                        		case 133:
+                        			return MOVE.DOWN;
+                        		case 114:
+                        			return MOVE.UP;
+                        		case 120:
+                        			return MOVE.UP;
+                        		case 132:
+                        			return MOVE.DOWN;
+                        		case 138:
+                        			return MOVE.DOWN;
+                        		case 1022:
+                        			return MOVE.RIGHT;
+                        		case 1023:
+                        			return MOVE.RIGHT;
+                        		case 1100:
+                        			return MOVE.DOWN;
+                        		case 1106:
+                        			return MOVE.DOWN;
+                        		case 1097:
+                        			return MOVE.LEFT;
+                        		case 1098:
+                        			return MOVE.LEFT;
+                        		case 1105:
+                        			return MOVE.DOWN;
+                        		case 1111:
+                        			return MOVE.DOWN;
+                        		}
+                        	}
+                        	else
+                        	{
+                        		switch(current){
+                        		case 131:
+                        			return MOVE.UP;
+                        		case 137:
+                        			return MOVE.UP;
+                        		case 149:
+                        			return MOVE.DOWN;
+                        		case 155:
+                        			return MOVE.DOWN;
+                        		case 136:
+                        			return MOVE.UP;
+                        		case 142:
+                        			return MOVE.UP;
+                        		case 154:
+                        			return MOVE.DOWN;
+                        		case 160:
+                        			return MOVE.DOWN;
+                        		case 1158:
+                        			return MOVE.UP;
+                        		case 1164:
+                        			return MOVE.UP;
+                        		case 1176:
+                        			return MOVE.DOWN;
+                        		case 1182:
+                        			return MOVE.DOWN;
+                        		case 1163:
+                        			return MOVE.UP;
+                        		case 1169:
+                        			return MOVE.UP;
+                        		case 1181:
+                        			return MOVE.DOWN;
+                        		case 1187:
+                        			return MOVE.DOWN;
+                        		}
+                        	}
+                        	//System.out.println("Ambush~~~");
                         }
                     }
                     else //非ambush狀態但察覺有危險
@@ -261,13 +426,37 @@ public class MyPacMan extends PacmanController
                         switch(closestPp)
                         {
                         case 1143:
-                            return game.getNextMoveTowardsTarget(current, 1095, Constants.DM.PATH);
+                            return game.getNextMoveTowardsTarget(current, 1125, Constants.DM.PATH);
                         case 1148:
-                            return game.getNextMoveTowardsTarget(current, 1124, Constants.DM.PATH);
+                            return game.getNextMoveTowardsTarget(current, 1142, Constants.DM.PATH);
                         case 97:
-                            return game.getNextMoveTowardsTarget(current, 121, Constants.DM.PATH);
+                            return game.getNextMoveTowardsTarget(current, 103, Constants.DM.PATH);
                         case 102:
-                            return game.getNextMoveTowardsTarget(current, 126, Constants.DM.PATH);
+                            return game.getNextMoveTowardsTarget(current, 108, Constants.DM.PATH);
+                        case 131:
+                            return game.getNextMoveTowardsTarget(current, 132, Constants.DM.PATH);
+                        case 220:
+                            return game.getNextMoveTowardsTarget(current, 219, Constants.DM.PATH);
+                        case 1083:
+                            return game.getNextMoveTowardsTarget(current, 1084, Constants.DM.PATH);
+                        case 1150:
+                            return game.getNextMoveTowardsTarget(current, 1149, Constants.DM.PATH);
+                        case 121:
+                            return game.getNextMoveTowardsTarget(current, 127, Constants.DM.PATH);
+                        case 126:
+                            return game.getNextMoveTowardsTarget(current, 132, Constants.DM.PATH);
+                        case 1021:
+                            return game.getNextMoveTowardsTarget(current, 1022, Constants.DM.PATH);
+                        case 1099:
+                            return game.getNextMoveTowardsTarget(current, 1098, Constants.DM.PATH);
+                        case 143:
+                            return game.getNextMoveTowardsTarget(current, 137, Constants.DM.PATH);
+                        case 148:
+                            return game.getNextMoveTowardsTarget(current, 142, Constants.DM.PATH);
+                        case 1170:
+                            return game.getNextMoveTowardsTarget(current, 1176, Constants.DM.PATH);
+                        case 1175:
+                            return game.getNextMoveTowardsTarget(current, 1181, Constants.DM.PATH);
                         }
                     }
                 }
